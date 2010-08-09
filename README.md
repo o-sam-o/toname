@@ -26,7 +26,22 @@ Installation
 Examples
 --------
 
-	TODO
+	ruby-1.9.2-preview3 > require 'to_name'
+	 => true 
+	ruby-1.9.2-preview3 > info = ToName.to_name('Primer.2004.DVDRip.x264.AC3.avi')
+	 => Primer (2004) 
+	ruby-1.9.2-preview3 > info.name
+	 => "Primer" 
+	ruby-1.9.2-preview3 > info.year
+	 => 2004 
+	ruby-1.9.2-preview3 > info = ToName.to_name('ManMen.S01E01.720p.HDTV.x264-CTU.mkv')
+	 => ManMen S: 1 E: 1 
+	ruby-1.9.2-preview3 > info.name
+	 => "ManMen"
+	ruby-1.9.2-preview3 > info.series
+	 => 1 
+	ruby-1.9.2-preview3 > info.episode
+	 => 1 
 	
 Licence
 -------

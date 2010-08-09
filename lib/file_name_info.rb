@@ -14,7 +14,7 @@ class FileNameInfo
     s = ''
     if @name
       s += @name
-      s += " [#{@year}]" if @year
+      s += " (#{@year})" if @year
       s += " S: #{@series} E: #{@episode}" if @series || @episode
     elsif @raw_name
       s += @raw_name

@@ -1,3 +1,5 @@
+require 'file_name_info'
+
 class ToName
 
   FILE_SEP_REGEX = /\//
