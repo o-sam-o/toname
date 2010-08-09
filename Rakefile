@@ -15,7 +15,7 @@ task :default => ["spec"]
 spec = Gem::Specification.new do |s|
 
   s.name              = "toname"
-  s.version           = "0.1.0"
+  s.version           = "0.1.1"
   s.summary           = "To Name"
   s.description       = "Convert video/torrent filename into movie/tv series name and year"
   s.author            = "Sam Cavenagh"
