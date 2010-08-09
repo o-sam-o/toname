@@ -46,7 +46,7 @@ class ToName
       year = $&.gsub(/\(|\)|\[|\]/, '').to_i
     end
 
-    #Strip LIMITED off the end.  Note: This is NOT case sensitive
+    #Strip LIMITED off the end.  Note: This is case sensitive
     name = $` if name =~ /LIMITED|LiMiTED$/
 
     #Try to extract the session and episode
