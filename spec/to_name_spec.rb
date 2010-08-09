@@ -65,6 +65,9 @@ describe ToName do
     check_to_name('/test/Rendition[2007]DvDrip[Eng]-FXG.mkv', 
                         'Rendition[2007]DvDrip[Eng] FXG', 
                         'Rendition', 2007)  
+	  check_to_name('/test/The.Lost.Boys[1987]DVDRip-tots/The.Lost.Boys[1987]DVDRip-tots.avi',
+                        'The Lost Boys[1987]DVDRip tots', 
+                        'The Lost Boys', 1987)                        
   end  
   
   it 'should handle format in brackets' do
@@ -143,9 +146,8 @@ describe ToName do
 	                      'Bunny And The Bull LIMITED DVDRip XviD DMT', 'Bunny And The Bull')
 	  check_to_name('/test/The.Darjeeling.Limited.2007.DVDRip.AC3.iNT-DEViSE.avi', 'The Darjeeling Limited 2007 DVDRip AC3 iNT DEViSE', 
 	                      'The Darjeeling Limited', 2007)	  
-	  check_to_name('/test/The.Lost.Boys[1987]DVDRip-tots/The.Lost.Boys[1987]DVDRip-tots.avi',
-                        'The Lost Boys[1987]DVDRip tots', 
-                        'The Lost Boys', 1987)
+	  check_to_name('/test/Bunny.And.The.Bull.LiMiTED.DVDRip.XviD-DMT/dmt-bunnybull.avi', 
+	                      'Bunny And The Bull LiMiTED DVDRip XviD DMT', 'Bunny And The Bull')
 	end
 	
 	it 'should find parent folder of a media file' do

@@ -5,7 +5,7 @@ class ToName
   FILE_SEP_REGEX = /\//
   FILE_EXT_SEP_REGEX = /\./
   CD_FOLDER_REGEX = /\/CD(\d)\//
-  #Chars used in file names as a subsitude for spaces
+  #Chars used in filenames as a substitute for spaces
   SPACE_SUB_REGEX = /(\.|_|\-)/
   VIDEO_TYPE_NAMES = ['DVDRIP', '1080p', '720p','R5', 'DVDSCR', 'BDRip', 'CAM', 'TS', 'PPV', 'Xvid', 'divx', 'DVDSCREENER']
   CONTENT_SOURCE_FOLDER_TEST_REGEX = /#{VIDEO_TYPE_NAMES.join('|')}/i
@@ -42,12 +42,12 @@ class ToName
     #Extract year if it's in the filename
     if name =~ YEAR_REGEX && name.index(YEAR_REGEX) > 0
       name = $`
-      #Strip any surronding brackets and convert to int
+      #Strip any surrounding brackets and convert to int
       year = $&.gsub(/\(|\)|\[|\]/, '').to_i
     end
 
     #Strip LIMITED off the end.  Note: This is NOT case sensitive
-    name = $` if name =~ /LIMITED$/
+    name = $` if name =~ /LIMITED|LiMiTED$/
 
     #Try to extract the session and episode
     session = nil
