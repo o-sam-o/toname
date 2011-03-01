@@ -9,31 +9,30 @@ Spec::Rake::SpecTask.new do |t|
   t.libs = ["spec"]
 end
 
-
 task :default => ["spec"]
 
-spec = Gem::Specification.new do |s|
+def generate_gem_spec
+  Gem::Specification.new do |s|
+    s.name              = "toname"
+    s.version           = "0.1.2"
+    s.summary           = "To Name"
+    s.description       = "Convert video/torrent filename into movie/tv series name and year"
+    s.author            = "Sam Cavenagh"
+    s.email             = "cavenaghweb@hotmail.com"
+    s.homepage          = "http://github.com/o-sam-o/toname"
 
-  s.name              = "toname"
-  s.version           = "0.1.1"
-  s.summary           = "To Name"
-  s.description       = "Convert video/torrent filename into movie/tv series name and year"
-  s.author            = "Sam Cavenagh"
-  s.email             = "cavenaghweb@hotmail.com"
-  s.homepage          = "http://github.com/o-sam-o/toname"
+    s.has_rdoc          = true
+    s.extra_rdoc_files  = %w(README.md)
+    s.rdoc_options      = %w(--main README.md)
 
-  s.has_rdoc          = true
-  s.extra_rdoc_files  = %w(README.md)
-  s.rdoc_options      = %w(--main README.md)
+    s.files             = %w(README.md) + Dir.glob("{spec,lib/**/*}")
+    s.require_paths     = ["lib"]
 
-  s.files             = %w(README.md) + Dir.glob("{spec,lib/**/*}")
-  s.require_paths     = ["lib"]
-  
-  s.add_development_dependency("rspec", ">= 2.5.8")
-
+    s.add_development_dependency("rspec", "~> 1.3")
+  end
 end
 
-Rake::GemPackageTask.new(spec) do |pkg|
+Rake::GemPackageTask.new(spec=generate_gem_spec) do |pkg|
   pkg.gem_spec = spec
 
   # Generate the gemspec file for github.

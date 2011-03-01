@@ -1,3 +1,4 @@
 .DS_Store
 pkg/toname-*
 toname-*.gem
+*.swp

@@ -149,7 +149,12 @@ describe ToName do
 	  check_to_name('/test/Bunny.And.The.Bull.LiMiTED.DVDRip.XviD-DMT/dmt-bunnybull.avi', 
 	                      'Bunny And The Bull LiMiTED DVDRip XviD DMT', 'Bunny And The Bull')
 	end
-	
+
+  it 'should handle crap before movie name' do
+    check_to_name('[www.Torrentday.com].Hereafter.DVDRip.XviD-DEFACED.avi', 'Hereafter DVDRip XviD DEFACED', 'Hereafter')
+    check_to_name('[www.tnttorrent.info].Please.Give.2010.[DVDRip.XviD-miguel].[Ekipa TnT].torrent', 'Please Give 2010 [DVDRip XviD miguel] [Ekipa TnT]', 'Please Give', 2010)
+  end
+
 	it 'should find parent folder of a media file' do
 	  ToName.parent_folder_name('test.mpg').should be_nil
 	  ToName.parent_folder_name('/test.mpg').should be_nil

@@ -29,11 +29,14 @@ class ToName
         check_extention = false
       end  
     end  
-  
+
+    # Remove anything at the start of the name surrounded by [], sometimes there is website name url
+    raw_name = raw_name.gsub(/^\[[^\]]+\]/, '')
+
     #Remove file extention
     raw_name = raw_name[0, raw_name.rindex(FILE_EXT_SEP_REGEX)] if check_extention && raw_name =~ FILE_EXT_SEP_REGEX
     #Remove space sub chars  
-    raw_name = raw_name.gsub(SPACE_SUB_REGEX, ' ')
+    raw_name = raw_name.gsub(SPACE_SUB_REGEX, ' ').strip
 
     name = raw_name.dup
     #Chop off any info about the movie format or source
