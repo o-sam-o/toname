@@ -2,3 +2,5 @@
 pkg/toname-*
 toname-*.gem
 *.swp
+.idea
+*.lock
