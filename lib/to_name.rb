@@ -19,7 +19,7 @@ class ToName
 
   def self.to_name(location)
     raw_name = self.get_file_name(location)
-  
+
     #Check to see if we are better off looking at the folder name
     check_extention = true
     unless raw_name =~ CONTENT_SOURCE_REGEX || raw_name =~ SESSION_ESP_REGEX_1
@@ -27,8 +27,8 @@ class ToName
       if parent_folder && parent_folder =~ CONTENT_SOURCE_FOLDER_TEST_REGEX
         raw_name = parent_folder
         check_extention = false
-      end  
-    end  
+      end
+    end
 
     # Remove anything at the start of the name surrounded by [], sometimes there is website name url
     raw_name = raw_name.gsub(/^\[[^\]]+\]/, '')
@@ -41,7 +41,7 @@ class ToName
     name = raw_name.dup
     #Chop off any info about the movie format or source
     name = $` if name =~ CONTENT_SOURCE_REGEX
-  
+
     #Extract year if it's in the filename
     if name =~ YEAR_REGEX && name.index(YEAR_REGEX) > 0
       name = $`
@@ -56,18 +56,20 @@ class ToName
     session = nil
     episode = nil
     SESSION_REGEXS.each do |session_regex|
-      if name =~ session_regex
+      if raw_name =~ session_regex
         name = $`
         session = $1.to_i
         episode = $2.to_i
+        year = nil # When the year is present with the series info assume it's part of the title
         break
       end
-    end  
+    end
 
-    if session.nil? && name =~ SESSION_ESP_REGEX_OF
+    if session.nil? && raw_name =~ SESSION_ESP_REGEX_OF
       name = $`
       session = 1
-      episode = $1.to_i  
+      episode = $1.to_i
+      year = nil # When the year is present with the series info assume it's part of the title
     end
 
     # Sometimes there can be multiple media files for a single movie, we want to remove the version number if this is the case
@@ -77,19 +79,19 @@ class ToName
         name = $`
       elsif name =~ /part\s?#{cd_number}/i
         name = $`
-      end  
-    end  
+      end
+    end
 
     name.strip!
-    return FileNameInfo.new(:raw_name => raw_name, :name => name, :year => year, 
-                            :series => session, :episode => episode, :location => location)  
+    return FileNameInfo.new(:raw_name => raw_name, :name => name, :year => year,
+                            :series => session, :episode => episode, :location => location)
   end
 
   def self.get_file_name(location)
     file_name = location.dup
     #Change to just the filename
-    file_name = file_name[file_name.rindex(FILE_SEP_REGEX) + 1, file_name.length] if file_name =~ FILE_SEP_REGEX  
-  
+    file_name = file_name[file_name.rindex(FILE_SEP_REGEX) + 1, file_name.length] if file_name =~ FILE_SEP_REGEX
+
     return file_name
   end
 
